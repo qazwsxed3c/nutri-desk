@@ -6,6 +6,42 @@
   <title>NutriDesk — кабинет нутрициолога</title>
   <meta name="description" content="Анкеты, дневник питания, анализы, графики, рекомендации и примеры рациона — офлайн-приложение для нутрициолога.">
   <meta name="theme-color" content="#2f7d5a">
+  <script>
+    /* Сброс старого service worker и кеша при обновлении версии сайта. */
+    (function () {
+      var VERSION = '2026-11-23-2'
+      try {
+        if (localStorage.getItem('nutridesk.assets') === VERSION) return
+        ;(async function () {
+          var touched = false
+          try {
+            if (navigator.serviceWorker) {
+              var regs = await navigator.serviceWorker.getRegistrations()
+              if (regs.length) {
+                await Promise.all(regs.map(function (reg) { return reg.unregister() }))
+                touched = true
+              }
+            }
+          } catch (error) {}
+          try {
+            if (window.caches) {
+              var keys = await caches.keys()
+              if (keys.length) {
+                await Promise.all(keys.map(function (key) { return caches.delete(key) }))
+                touched = true
+              }
+            }
+          } catch (error) {}
+          try { localStorage.setItem('nutridesk.assets', VERSION) } catch (error) {}
+          var reloadKey = 'nutridesk.reloaded.' + VERSION
+          if (touched && !sessionStorage.getItem(reloadKey)) {
+            try { sessionStorage.setItem(reloadKey, '1') } catch (error) {}
+            location.reload()
+          }
+        })()
+      } catch (error) {}
+    })()
+  </script>
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">

@@ -216,7 +216,8 @@ function shellHtml(route, viewHtml) {
           <div class="brand-mark">N</div>
           <div><div class="brand-name">NutriDesk</div></div>
         </div>
-        <select class="input" style="max-width:190px" data-change="switch-client" aria-label="Активный клиент">${pickerOptions}</select>
+        <a class="btn btn-sm btn-icon" href="#/clients" title="Клиенты" aria-label="Клиенты">${icon('users', 18)}</a>
+        <select class="input" style="max-width:170px" data-change="switch-client" aria-label="Активный клиент">${pickerOptions}</select>
       </header>
       <nav class="tabs" aria-label="Разделы">${tabsClients}${tabLinks}</nav>
       <main class="view" id="view">${viewHtml}</main>

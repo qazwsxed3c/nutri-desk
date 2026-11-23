@@ -39,7 +39,8 @@ export function overviewView(ctx) {
   const html = `
     ${clientPageHead(client, {
       subtitle: 'Ключевые показатели, питание и флаги по клиенту в одном месте.',
-      actions: `<button class="btn" data-action="add-measurement">${icon('plus', 16)}Измерение</button>
+      actions: `<a class="btn" href="#/clients">${icon('users', 16)}Клиенты</a>
+        <button class="btn" data-action="add-measurement">${icon('plus', 16)}Измерение</button>
         <button class="btn" data-action="edit-client">${icon('edit', 16)}Анкета</button>
         <a class="btn btn-primary" href="#/client/${client.id}/diary">${icon('book', 16)}Дневник</a>
         <button class="btn btn-sm btn-danger" data-action="delete-client" aria-label="Удалить клиента">${icon('trash', 14)}Удалить</button>`,

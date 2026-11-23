@@ -1,5 +1,5 @@
 /* NutriDesk service worker: офлайн-оболочка и кеш статики. */
-const CACHE = 'nutridesk-v1'
+const CACHE = 'nutridesk-v2'
 const ASSETS = [
   './',
   './index.html',
@@ -62,6 +62,22 @@ self.addEventListener('fetch', (event) => {
           return response
         })
         .catch(async () => (await caches.match(request)) ?? (await caches.match('./index.html'))),
+    )
+    return
+  }
+
+  // Код приложения обновляется по сети, кеш — только запасной вариант для офлайна.
+  if (/\.(?:js|mjs|css|json|webmanifest|md)$/.test(url.pathname)) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const copy = response.clone()
+            caches.open(CACHE).then((cache) => cache.put(request, copy)).catch(() => {})
+          }
+          return response
+        })
+        .catch(() => caches.match(request)),
     )
     return
   }
