@@ -46,7 +46,7 @@ function clientCard(client, ctx) {
     <div class="client-actions">
       <button class="btn btn-sm btn-primary" data-action="open-client" data-id="${escape(client.id)}">Открыть</button>
       <button class="btn btn-sm" data-action="edit-client" data-id="${escape(client.id)}">${icon('edit', 14)}Изменить</button>
-      <button class="btn btn-sm btn-ghost" data-action="delete-client" data-id="${escape(client.id)}" aria-label="Удалить клиента">${icon('trash', 14)}</button>
+      <button class="btn btn-sm btn-danger" data-action="delete-client" data-id="${escape(client.id)}">${icon('trash', 14)}Удалить</button>
     </div>
   </article>`
 }
@@ -95,7 +95,7 @@ export function clientsView(ctx) {
         <p class="subtitle">Рабочее пространство нутрициолога: анкеты, дневники, анализы и планы питания.</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-primary" data-action="new-client">${icon('plus', 16)}Новый клиент</button>
+        <button class="btn btn-primary" data-action="new-client">${icon('plus', 16)}Добавить клиента</button>
         <button class="btn" data-action="export">${icon('download', 16)}Резервная копия</button>
         <button class="btn" data-action="import">${icon('upload', 16)}Импорт</button>
       </div>
@@ -106,7 +106,8 @@ export function clientsView(ctx) {
       <div class="stat"><div class="stat-label">С анализами</div><div class="stat-value">${withLabs}</div></div>
       <div class="stat"><div class="stat-label">Демо-данные</div><div class="stat-value">${clients.filter((client) => String(client.name).includes('(демо)')).length}</div><div class="stat-hint">можно удалить в любой момент</div></div>
     </div>
-    ${clients.length ? `<div class="client-grid">${clients.map((client) => clientCard(client, ctx)).join('')}</div>` :
+    ${clients.length ? `<div class="client-grid">${clients.map((client) => clientCard(client, ctx)).join('')}</div>
+      <div class="row" style="margin-top:16px"><button class="btn" data-action="new-client">${icon('plus', 16)}Добавить ещё клиента</button></div>` :
       emptyState('Пока нет клиентов', 'Создайте первого клиента: заполните анкету, цель и стартовые измерения — приложение рассчитает цели и поможет вести дневник.', `<button class="btn btn-primary" data-action="new-client">${icon('plus', 16)}Добавить клиента</button>`)}
     <div class="card" style="margin-top:16px">
       <div class="card-body row" style="justify-content:space-between">

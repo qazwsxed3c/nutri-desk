@@ -173,11 +173,14 @@ function clientOptions(activeId) {
 function shellHtml(route, viewHtml) {
   const activeClient = route.clientId ? store.clientById(route.clientId) : store.activeClient()
   const section = route.name === 'clients' ? 'clients' : route.name
+  const clientsHref = '#/clients'
+  const clientsLink = `<a href="${clientsHref}" class="${section === 'clients' ? 'active' : ''}">${icon('users', 17)}<span>Клиенты</span></a>`
   const navLinks = SECTIONS.map((item) => {
     const href = activeClient ? routeFor(item.id, activeClient.id) : '#/clients'
     const disabled = !activeClient && item.id !== 'overview'
     return `<a href="${href}" class="${section === item.id ? 'active' : ''} ${disabled ? 'disabled' : ''}" ${disabled ? 'aria-disabled="true" tabindex="-1"' : ''}>${icon(item.icon, 17)}<span>${item.label}</span></a>`
   }).join('')
+  const tabsClients = `<a href="${clientsHref}" class="${section === 'clients' ? 'active' : ''}">Клиенты</a>`
   const tabLinks = SECTIONS.map((item) => {
     const href = activeClient ? routeFor(item.id, activeClient.id) : '#/clients'
     return `<a href="${href}" class="${section === item.id ? 'active' : ''}">${item.label}</a>`
@@ -195,8 +198,9 @@ function shellHtml(route, viewHtml) {
       <div class="client-picker">
         <label for="client-picker-side">Активный клиент</label>
         <select id="client-picker-side" class="input" data-change="switch-client">${pickerOptions}</select>
+        <a class="btn btn-sm" href="#/clients" style="margin-top:6px">${icon('users', 14)}Управление клиентами</a>
       </div>
-      <nav class="nav" aria-label="Разделы клиента">${navLinks}</nav>
+      <nav class="nav" aria-label="Разделы клиента">${clientsLink}${navLinks}</nav>
       <div class="sidebar-foot">
         <div class="foot-actions">
           <button class="btn btn-sm" data-action="export">${icon('download', 14)}Экспорт</button>
@@ -214,7 +218,7 @@ function shellHtml(route, viewHtml) {
         </div>
         <select class="input" style="max-width:190px" data-change="switch-client" aria-label="Активный клиент">${pickerOptions}</select>
       </header>
-      <nav class="tabs" aria-label="Разделы">${tabLinks}</nav>
+      <nav class="tabs" aria-label="Разделы">${tabsClients}${tabLinks}</nav>
       <main class="view" id="view">${viewHtml}</main>
     </div>
   </div>`
