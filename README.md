@@ -9,7 +9,9 @@
 ## Онлайн-версия (GitHub Pages)
 
 Публичная версия приложения размещается на GitHub Pages:
-**[https://USERNAME.github.io/nutridesk/](https://USERNAME.github.io/nutridesk/)**
+**[https://qazwsxed3c.github.io/nutri-desk/](https://qazwsxed3c.github.io/nutri-desk/)**
+
+Репозиторий: [github.com/qazwsxed3c/nutri-desk](https://github.com/qazwsxed3c/nutri-desk).
 
 После публикации сайт работает по HTTPS, устанавливается как PWA на телефон и компьютер и работает офлайн
 после первого открытия (service worker). Данные, как и раньше, хранятся только в браузере пользователя.
