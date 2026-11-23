@@ -1,0 +1,12 @@
+{
+  "name": "nutridesk",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NutriDesk — офлайн-приложение для нутрициолога: анкеты, дневник питания, анализы, рекомендации и примеры рациона",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "serve": "python -m http.server 8788 --bind 127.0.0.1",
+    "test": "node test/core.test.mjs && node test/imports.test.mjs && node test/views.test.mjs"
+  }
+}
