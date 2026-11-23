@@ -41,7 +41,8 @@ export function overviewView(ctx) {
       subtitle: 'Ключевые показатели, питание и флаги по клиенту в одном месте.',
       actions: `<button class="btn" data-action="add-measurement">${icon('plus', 16)}Измерение</button>
         <button class="btn" data-action="edit-client">${icon('edit', 16)}Анкета</button>
-        <a class="btn btn-primary" href="#/client/${client.id}/diary">${icon('book', 16)}Дневник</a>`,
+        <a class="btn btn-primary" href="#/client/${client.id}/diary">${icon('book', 16)}Дневник</a>
+        <button class="btn btn-sm btn-danger" data-action="delete-client" aria-label="Удалить клиента">${icon('trash', 14)}Удалить</button>`,
     })}
     <div class="grid cols-4" style="margin-bottom:16px">
       <div class="stat"><div class="stat-label">Вес сейчас</div><div class="stat-value">${fmt(currentWeight)} кг</div>
@@ -101,6 +102,13 @@ export function overviewView(ctx) {
     actions: {
       'add-measurement': () => measurementModal(ctx, client),
       'edit-client': () => editClientModal(ctx, client),
+      'delete-client': () => {
+        if (!confirm(`Удалить клиента «${client.name}» и все его данные? Действие необратимо.`)) return
+        ctx.store.deleteClient(client.id)
+        ctx.toast('Клиент удалён')
+        ctx.navigate('clients')
+        ctx.render({ preserveScroll: false })
+      },
     },
   }
 }

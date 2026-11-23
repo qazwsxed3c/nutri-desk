@@ -61,7 +61,7 @@ function newClientModal(ctx) {
       const patch = parseClientForm(values)
       const client = ctx.store.addClient(patch)
       ctx.toast(`Клиент «${client.name}» добавлен`)
-      ctx.navigate('overview', client.id)
+      ctx.navigate('overview')
       ctx.render({ preserveScroll: false })
     },
   })
