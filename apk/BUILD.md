@@ -1,7 +1,8 @@
 # NutriDesk — Android APK
 
-Готовый установочный файл: [NutriDesk-1.0.0.apk](NutriDesk-1.0.0.apk) (~169 КБ).
-Пакет `ru.nutridesk.app`, версия 1.0.0, Android 7.0+ (minSdk 24), targetSdk 34.
+Готовый установочный файл: [NutriDesk-1.0.2.apk](NutriDesk-1.0.2.apk) (~169 КБ).
+Пакет `ru.nutridesk.app`, версия 1.0.2, Android 5.0+ (minSdk 21), targetSdk 34.
+Подпись: v1 + v2 + v3 (совместимость со старыми и сторонними установщиками).
 
 APK — WebView-обёртка той же офлайн-версии приложения. Данные хранятся локально (localStorage WebView),
 резервная копия — через «Экспорт» в системный диалог сохранения JSON. Интернет для работы не нужен.
